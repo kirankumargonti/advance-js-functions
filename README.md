@@ -25,7 +25,7 @@ JavaScript offers a rich set of features and libraries that allow developers to 
 
 Debouncing is a technique used to ensure that a function does not execute until after a certain amount of time has passed since the last time it was invoked. This is particularly useful for events that trigger frequently, such as window resizing or scrolling.
 
-```
+```javascript
 function debounce(func, delay) {
   let timer
   return (...args) => {
@@ -37,9 +37,9 @@ function debounce(func, delay) {
 }
 ```
 
-**Usage**
+**Usage Example**
 
-```
+```javascript
 
 function someFunction(arg) {
   console.log(arg)
@@ -60,7 +60,7 @@ debouncedFunction('!') // Call 3 (ignored)
 
 Throttling limits the rate at which a function can fire. This is useful for events that should not fire too often, such as resizing windows or scrolling pages.
 
-```
+```javascript
 function throttle(func, limit) {
   let inThrottle = false
 
@@ -75,9 +75,9 @@ function throttle(func, limit) {
 }
 ```
 
-**Usage**
+**Usage Example**
 
-```
+```javascript
 // Define the function that updates the layout
 function updateLayout() {
   console.log('Resize event handler called')
@@ -93,7 +93,7 @@ window.addEventListener('resize', handleScroll)
 
 The `once` function ensures that a given function is executed only once, regardless of how many times it is called.
 
-```
+```javascript
 function once(func) {
     let called = false;
     let result;
@@ -107,9 +107,9 @@ function once(func) {
 }
 ```
 
-**Usage**
+**Usage Example**
 
-```
+```javascript
 const firstTask = once(function() {
     console.log('First task executed!');
     return 'First task result';
@@ -131,7 +131,7 @@ console.log(secondTask()); // Just returns 'Second task result'
 
 Memoization is a technique used to speed up programs by storing the results of expensive function calls and reusing them when the same inputs occur again.
 
-```
+```javascript
 function memoize(func) {
     const cache = new Map();
     return function(...args) {
@@ -147,9 +147,9 @@ function memoize(func) {
 
 ```
 
-**Usage**
+**Usage Example**
 
-```
+```javascript
 const expensiveCalculation = memoize(function(x, y) {
     console.log('Calculating...');
     return x + y;
@@ -167,7 +167,7 @@ console.log(expensiveCalculation(4, 5)); // Returns 9 from cache, without loggin
 
 Currying is a technique in functional programming where a function with multiple arguments is transformed into a sequence of functions, each with a single argument.
 
-```
+```javascript
 function curry(func) {
     return function curried(...args) {
         if (args.length >= func.length) {
@@ -182,9 +182,9 @@ function curry(func) {
 
 ```
 
-**Usage**
+**Usage Example**
 
-```
+```javascript
 function add(a, b, c) {
     return a + b + c;
 }
@@ -202,7 +202,7 @@ console.log(curriedAdd(1, 2, 3)); // 6
 
 Partials are functions that take a function and some arguments, and return a new function that, when called, passes the remaining arguments to the original function.
 
-```
+```javascript
 function partial(func, ...fixedArgs) {
     return function(...remainingArgs) {
         return func.apply(this, [...fixedArgs, ...remainingArgs]);
@@ -211,9 +211,9 @@ function partial(func, ...fixedArgs) {
 
 ```
 
-**Usage**
+**Usage Example**
 
-```
+```javascript
 function greet(greeting, name) {
     return `${greeting}, ${name}!`;
 }
@@ -240,7 +240,7 @@ console.log(add5And3(4)); // 12
 
 Piping is a concept borrowed from Unix/Linux pipelines, where the output of one command is piped as input to another. In JavaScript, piping allows you to chain functions together, passing the result of one function as input to the next.
 
-```
+```javascript
 function pipe(...functions) {
     return function(initialValue) {
         return functions.reduce((acc, fn) => fn(acc), initialValue);
@@ -249,9 +249,9 @@ function pipe(...functions) {
 
 ```
 
-**Usage**
+**Usage Example**
 
-```
+```javascript
 const double = x => x * 2;
 const increment = x => x + 1;
 const square = x => x * x;
@@ -266,7 +266,7 @@ console.log(processNumber(3)); // 49
 
 Composition is the process of combining simple functions to create more complex ones. In JavaScript, composing functions allows for cleaner, more readable code.
 
-```
+```javascript
 function compose(...functions) {
     return function(initialValue) {
         return functions.reduceRight((acc, fn) => fn(acc), initialValue);
@@ -275,9 +275,9 @@ function compose(...functions) {
 
 ```
 
-**Usage**
+**Usage Example**
 
-```
+```javascript
 const double = x => x * 2;
 const increment = x => x + 1;
 const square = x => x * x;
@@ -292,7 +292,7 @@ console.log(processNumber(3)); // 49
 
 The `pick` function creates a new object with only the specified properties from the original object.
 
-```
+```javascript
 function pick(obj, keys) {
     return keys.reduce((acc, key) => {
         if (obj && Object.prototype.hasOwnProperty.call(obj, key)) {
@@ -304,9 +304,9 @@ function pick(obj, keys) {
 
 ```
 
-**Usage**
+**Usage Example**
 
-```
+```javascript
 const user = {
     id: 1,
     name: 'John Doe',
@@ -325,7 +325,7 @@ console.log(pickedUser);
 
 The `omit` function creates a new object with all properties except those specified.
 
-```
+```javascript
 function omit(obj, ...keys) {
     return Object.keys(obj).reduce((acc, key) => {
         if (!keys.includes(key)) {
@@ -341,7 +341,7 @@ function omit(obj, ...keys) {
 
 Zipping combines corresponding elements from multiple arrays into tuples.
 
-```
+```javascript
 function zip(...arrays) {
     const length = Math.min(...arrays.map(arr => arr.length));
     return Array.from({ length }, (_, index) => arrays.map(arr => arr[index]));
@@ -349,9 +349,9 @@ function zip(...arrays) {
 
 ```
 
-**Usage**
+**Usage Example**
 
-```
+```javascript
 const names = ['Alice', 'Bob', 'Charlie'];
 const ages = [30, 25, 35];
 const cities = ['New York', 'San Francisco', 'Seattle'];
